@@ -10,7 +10,9 @@ const MultiStepForm = () => {
     email: '',
     address: '',
     city: '',
+    county: '',
     zip: '',
+    preferences: [],
   });
 
   const [errors, setErrors] = useState({});
