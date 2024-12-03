@@ -76,13 +76,9 @@ const MultiStepForm = () => {
               Back
             </button>
           )}
-          {step < 3 ? (
+          {step < 3 && (
             <button className="btn btn-primary" onClick={handleNext}>
               Next
-            </button>
-          ) : (
-            <button className="btn btn-success" onClick={handleSubmit}>
-              Submit
             </button>
           )}
         </div>
