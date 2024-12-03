@@ -67,23 +67,9 @@ const MultiStepForm = () => {
   return (
     <div className="card">
       <div className="card-body">
-        {step === 1 && (
-          <Step1
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
-        )}
-        {step === 2 && (
-          <Step2
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
-        )}
-        {step === 3 && (
-          <Step3 formData={formData} handleSubmit={handleSubmit} />
-        )}
+        {step === 1 && <Step1 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 3 && <Step3 formData={formData} handleSubmit={handleSubmit} />}
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
             <button className="btn btn-secondary" onClick={handleBack}>
