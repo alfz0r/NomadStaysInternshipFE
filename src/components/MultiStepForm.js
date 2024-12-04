@@ -14,6 +14,7 @@ const MultiStepForm = () => {
     zip: '',
     dob: '',
     docpicker: '',
+    textarea: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -74,7 +75,8 @@ const MultiStepForm = () => {
         {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 3 && <Step3 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 4 && <Step4 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 5 && <Step3 formData={formData} handleCa={handleSubmit} />}
+        {/* {step === 5 && <Step5 formData={formData} handleSubmit={handleSubmit} />} */} 
+        {/* error on step 5 */}
        
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
