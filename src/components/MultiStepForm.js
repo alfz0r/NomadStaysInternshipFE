@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Step4 from './Step4';
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -11,6 +12,7 @@ const MultiStepForm = () => {
     address: '',
     city: '',
     zip: '',
+    dob: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -69,14 +71,17 @@ const MultiStepForm = () => {
       <div className="card-body">
         {step === 1 && <Step1 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 3 && <Step3 formData={formData} handleSubmit={handleSubmit} />}
+        {step === 3 && <Step3 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 4 && <Step4 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 5 && <Step3 formData={formData} handleCa={handleSubmit} />}
+       
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
             <button className="btn btn-secondary" onClick={handleBack}>
               Back
             </button>
           )}
-          {step < 3 ? (
+          {step < 5 ? (
             <button className="btn btn-primary" onClick={handleNext}>
               Next
             </button>
