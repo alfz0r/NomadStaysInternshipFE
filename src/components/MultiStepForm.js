@@ -17,6 +17,7 @@ const MultiStepForm = () => {
     notifications: false,
     newsletter: false,
     dob: '',
+    docpicker: '',
   });
 
   const [errors, setErrors] = useState({});
