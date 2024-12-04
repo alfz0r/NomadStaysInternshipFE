@@ -16,6 +16,7 @@ const MultiStepForm = () => {
     gender: '',
     notifications: false,
     newsletter: false,
+    dob: '',
   });
 
   const [errors, setErrors] = useState({});
