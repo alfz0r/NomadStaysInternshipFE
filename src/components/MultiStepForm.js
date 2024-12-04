@@ -13,6 +13,7 @@ const MultiStepForm = () => {
     city: '',
     zip: '',
     dob: '',
+    docpicker: '',
   });
 
   const [errors, setErrors] = useState({});
