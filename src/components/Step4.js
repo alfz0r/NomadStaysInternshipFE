@@ -21,10 +21,10 @@ const Step4 = ({ formData, handleSubmit }) => (
           <strong>Gender:</strong> {formData.gender}
         </li>
         <li className="list-group-item">
-          <strong>Subscribe to newsletter:</strong> {formData.newsletter}
+          <strong>Subscribe to newsletter:</strong> {formData.newsletter ? 'Subscribed' : 'Not subscribed'}
         </li>
         <li className="list-group-item">
-          <strong>Receive notifications:</strong> {formData.notifications}
+          <strong>Receive notifications:</strong> {formData.notifications ? 'Notifications on' : 'Notifications off'}
         </li>
         
       </ul>

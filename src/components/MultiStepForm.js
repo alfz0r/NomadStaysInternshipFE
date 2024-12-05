@@ -12,7 +12,7 @@ const MultiStepForm = () => {
     address: '',
     city: '',
     zip: '',
-    roles: '',
+    role: '',
     gender: '',
     notifications: false,
     newsletter: false,
@@ -82,7 +82,7 @@ const MultiStepForm = () => {
       <div className="card-body">
         {step === 1 && <Step1 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 3 && <Step3 formData={formData} handleSubmit={handleChange} errors={errors}/>}
+        {step === 3 && <Step3 formData={formData} handleChange={handleChange} errors={errors}/>}
         {step === 4 && <Step4 formData={formData} handleSubmit={handleSubmit} />}
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
