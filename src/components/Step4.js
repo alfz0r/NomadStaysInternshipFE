@@ -35,7 +35,7 @@ const Step4 = ({ formData, handleChange, errors }) => (
           rows={8}
           className={`form-control ${errors.textarea ? 'is-invalid' : ''}`}
           placeholder="Write a comment..."
-          name="textarea" // Ensure the name matches the formData key
+          name="textarea" 
           value={formData.textarea}
           onChange={handleChange}
         />

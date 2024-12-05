@@ -18,12 +18,7 @@ const Step3 = ({ formData, handleSubmit }) => (
           <strong>ZIP Code:</strong> {formData.zip}
         </li>
       </ul>
-      <button
-        className="btn btn-success mt-3"
-        onClick={handleSubmit}
-      >
-        Confirm and Submit
-      </button>
+     
     </div>
   );
   
