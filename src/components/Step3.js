@@ -1,31 +1,74 @@
-const Step3 = ({ formData, handleSubmit }) => (
+const Step3 = ({ formData, handleChange, errors }) => (
     <div>
-      <h2 className="mb-3">Step 3: Review Your Details</h2>
-      <ul className="list-group">
-        <li className="list-group-item">
-          <strong>Name:</strong> {formData.name}
-        </li>
-        <li className="list-group-item">
-          <strong>Email:</strong> {formData.email}
-        </li>
-        <li className="list-group-item">
-          <strong>Address:</strong> {formData.address}
-        </li>
-        <li className="list-group-item">
-          <strong>City:</strong> {formData.city}
-        </li>
-        <li className="list-group-item">
-          <strong>ZIP Code:</strong> {formData.zip}
-        </li>
-      </ul>
-      <button
-        className="btn btn-success mt-3"
-        onClick={handleSubmit}
+      <h2 className="mb-3">Step 3: Preferences</h2>
+      <div>
+      <label>Choose your gender:</label>
+        <div>
+          <input  
+            type="radio"
+            className="form-check-input"
+            id="male"
+            name="gender"
+            value="male"
+            defaultChecked={formData.gender === "male"}
+            onChange={handleChange}
+          />
+          <label>Male</label>
+          
+          <input 
+            type="radio"
+            className="form-check-input"
+            id="female"
+            name="gender"
+            value="female"
+            defaultChecked={formData.gender === "female"}
+            onChange={handleChange}
+          />
+          
+          <label>Female</label>
+        </div>
+     </div>
+     
+     {/* <div>
+      <input 
+        type="checkbox"
+        className="form-check-input"
+        id="newsletter"
+        name="preferences"
+        value="newsletter"
+        checked={formData.newsletter}
+        onChange={handleChange}
+      />
+      <label>Subscribe to newsletter</label>
+     </div> */}
+
+     {/* <div>
+      <input 
+        type="checkbox"
+        className="form-check-input"
+        id="notifications"
+        name="preferences"
+        value="notifications"
+        checked={formData.notifications}
+        onChange={handleChange}
+      />
+      <label>Receive notifications</label>
+     </div> */}
+     
+     <div>
+      {/* <select
+      name="roles"
+      className={"form-control ${errors.roles ? 'is-invalid' : ''}"}
+      value={formData.roles}
+      onChange={handleChange}
       >
-        Confirm and Submit
-      </button>
+      <option value="">Please select a role</option>
+      <option value="">Admin</option>
+      <option value="">User</option>
+      <option value="">Guest</option>
+        </select> */}
+      </div>
     </div>
   );
   
   export default Step3;
-  
