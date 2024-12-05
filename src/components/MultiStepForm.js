@@ -21,6 +21,7 @@ const MultiStepForm = () => {
   const [errors, setErrors] = useState({});
 
   const handleNext = () => {
+    debugger
     const validationErrors = validateStep(step);
     if (Object.keys(validationErrors).length === 0) {
       setStep(step + 1);
@@ -32,7 +33,6 @@ const MultiStepForm = () => {
   const handleBack = () => setStep(step - 1);
 
   const handleChange = (e) => {
-    debugger
     const { name, value, type, checked } = e.target;
 
     if (type === "checkbox") {
@@ -73,8 +73,12 @@ const MultiStepForm = () => {
         newErrors.zip = 'ZIP code must be a 5-digit number';
       }
     }
+    if (currentStep === 3) {
+      if (!formData.gender.trim()) newErrors.gender = 'You need to choose gender';
+      if (!formData.role.trim()) newErrors.role = 'Role is required';
+    }
 
-    return newErrors;
+  return newErrors;
   };
 
   return (

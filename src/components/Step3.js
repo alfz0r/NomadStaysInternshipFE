@@ -14,7 +14,7 @@ const Step3 = ({ formData, handleChange, errors }) => (
           onChange={handleChange}
         />
         <label className="mx-3">Male</label>
-
+        
         <input
           type="radio"
           className="form-check-input"
@@ -26,6 +26,7 @@ const Step3 = ({ formData, handleChange, errors }) => (
         />
 
         <label className="ms-3">Female</label>
+        {errors.gender && <div className="invalid-feedback">{errors.gender}</div>}
       </div>
     </div>
 
@@ -67,6 +68,7 @@ const Step3 = ({ formData, handleChange, errors }) => (
         <option value="User">User</option>
         <option value="Guest">Guest</option>
       </select>
+      {errors.role && <div className="invalid-feedback">{errors.role}</div>}
     </div>
   </div>
 );
