@@ -6,7 +6,7 @@ const Step3 = ({ formData, handleChange, errors }) => (
       <div>
         <input
           type="radio"
-          className="form-check-input"
+          className={`form-check-input ${errors.gender ? 'is-invalid' : ''}`}
           id="male"
           name="gender"
           value="male"
@@ -17,7 +17,7 @@ const Step3 = ({ formData, handleChange, errors }) => (
         
         <input
           type="radio"
-          className="form-check-input"
+          className={`form-check-input ${errors.gender ? 'is-invalid' : ''}`}
           id="female"
           name="gender"
           value="female"
@@ -59,7 +59,7 @@ const Step3 = ({ formData, handleChange, errors }) => (
     <div className="form-group mt-3">
       <select
         name="role"
-        className={`form-control ${errors.roles ? 'is-invalid' : ''}`}
+        className={`form-control ${errors.role ? 'is-invalid' : ''}`}
         value={formData.role}
         onChange={handleChange}
       >
