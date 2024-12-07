@@ -3,7 +3,7 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import Step4 from './Step4';
-import Step5 from './Step5';
+
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -102,8 +102,8 @@ const MultiStepForm = () => {
         {step === 1 && <Step1 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 3 && <Step3 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 4 && <Step4 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 5 && <Step5 formData={formData} handleSubmit={handleSubmit} errors={errors} />}
+        {step === 4 && <Step4 formData={formData} handleSubmit={handleSubmit} errors={errors} />}
+        
        
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
@@ -111,9 +111,13 @@ const MultiStepForm = () => {
               Back
             </button>
           )}
-          {step < 4 && (
+          {step < 4 ? (
             <button className="btn btn-primary" onClick={handleNext}>
               Next
+            </button>
+          ) : (
+            <button className="btn btn-success" onClick={handleSubmit}>
+              Save and Submit
             </button>
           )}
         </div>
