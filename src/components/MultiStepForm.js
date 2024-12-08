@@ -67,7 +67,7 @@ const MultiStepForm = () => {
       }
     }
       
-    if (currentStep === 4) {
+    if (currentStep === 3) {
       if (!formData.docpicker.trim()) newErrors.docpicker = 'Pdf document is requierd'
       if (!formData.dob.trim()) newErrors.dob = 'Date of birth is requierd' }
       else if  (/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.test(formData.dob)) {
