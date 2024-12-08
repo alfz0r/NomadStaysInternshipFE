@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -21,6 +21,11 @@ const MultiStepForm = () => {
     docpicker: '',
     textarea: '',
   });
+
+  if (localStorage.MultiStepFormData &&  localStorage.currentStep >= 4) {
+    setFormData(localStorage.MultiStepFormData) 
+  
+  }
 
   const [errors, setErrors] = useState({});
 
@@ -48,7 +53,8 @@ const MultiStepForm = () => {
     setErrors({ ...errors, [name]: '' }); // Clear errors for the current field
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (updatedData) => {
+    setFormData(updatedData);
     const validationErrors = validateStep(step);
     if (Object.keys(validationErrors).length === 0) {
       console.log('Form Submitted:', formData);
@@ -90,7 +96,9 @@ const MultiStepForm = () => {
       if (!formData.dob.trim()) newErrors.dob = 'Date of birth is requierd' }
       else if  (/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.test(formData.dob)) {
         newErrors.dob = 'Date of birth is requierd';
+        
       }
+      
     
 
     return newErrors;
@@ -103,7 +111,7 @@ const MultiStepForm = () => {
         {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 3 && <Step3 formData={formData} handleChange={handleChange} errors={errors} />}
         {step === 4 && <Step4 formData={formData} handleSubmit={handleSubmit} errors={errors} />}
-        
+      
        
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
@@ -120,6 +128,7 @@ const MultiStepForm = () => {
               Save and Submit
             </button>
           )}
+          {/* <Step4 formData={formData} handleSubmit={handle} /> */}
         </div>
       </div>
     </div>
