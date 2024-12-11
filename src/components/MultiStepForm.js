@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import Step4 from './Step4';
+import Step5 from './Step5';
+
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -16,7 +18,15 @@ const MultiStepForm = () => {
     gender: '',
     notifications: false,
     newsletter: false,
+    dob: '',
+    docpicker: '',
+    textarea: '',
   });
+
+  if (localStorage.MultiStepFormData &&  localStorage.currentStep >= 4) {
+    setFormData(localStorage.MultiStepFormData) 
+  
+  }
 
   const [errors, setErrors] = useState({});
 
@@ -44,7 +54,8 @@ const MultiStepForm = () => {
     setErrors({ ...errors, [name]: '' }); // Clear errors for the current field
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (updatedData) => {
+    setFormData(updatedData);
     const validationErrors = validateStep(step);
     if (Object.keys(validationErrors).length === 0) {
       console.log('Form Submitted:', formData);
@@ -80,6 +91,14 @@ const MultiStepForm = () => {
         newErrors.gender = 'You need to choose gender';
       if (!formData.role.trim()) newErrors.role = 'Role is required';
     }
+      
+    if (currentStep === 4) {
+      if (!formData.docpicker.trim()) newErrors.docpicker = 'Pdf document is requierd'
+      if (!formData.dob.trim()) newErrors.dob = 'Date of birth is requierd' }
+      else if  (/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/.test(formData.dob)) {
+        newErrors.dob = 'Date of birth is requierd';
+        
+      }
 
     return newErrors;
   };
@@ -87,41 +106,28 @@ const MultiStepForm = () => {
   return (
     <div className="card">
       <div className="card-body">
-        {step === 1 && (
-          <Step1
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
-        )}
-        {step === 2 && (
-          <Step2
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
-        )}
-        {step === 3 && (
-          <Step3
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
-        )}
-        {step === 4 && (
-          <Step4 formData={formData} handleSubmit={handleSubmit} />
-        )}
+        {step === 1 && <Step1 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 3 && <Step3 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 4 && <Step4 formData={formData} handleChange={handleChange} errors={errors} />}
+        {step === 5 && <Step5 formData={formData} handleSubmit={handleSubmit} errors={errors} />}
+       
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
             <button className="btn btn-secondary" onClick={handleBack}>
               Back
             </button>
           )}
-          {step < 4 && (
+          {step < 5 ? (
             <button className="btn btn-primary" onClick={handleNext}>
               Next
             </button>
+          ) : (
+            <button className="btn btn-success" onClick={handleSubmit}>
+              Save and Submit
+            </button>
           )}
+          {/* <Step4 formData={formData} handleSubmit={handle} /> */}
         </div>
       </div>
     </div>

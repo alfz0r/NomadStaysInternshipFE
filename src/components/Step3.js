@@ -69,8 +69,9 @@ const Step3 = ({ formData, handleChange, errors }) => (
         <option value="Guest">Guest</option>
       </select>
       {errors.role && <div className="invalid-feedback">{errors.role}</div>}
-    </div>
-  </div>
+      </div>
+      </div>
 );
 
 export default Step3;
+
