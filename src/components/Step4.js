@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Step4 = ({ formData, handleSubmit }) => {
   const [editing, setEditing] = useState(false); // starea de editare
   const [updatedFormData, setUpdatedFormData] = useState({ ...formData }); // Stare pentru datele editate
 
- 
-
-    useEffect(() => {
-      const storedData = localStorage.getItem('formData');
-      if(storedData) {
-        setUpdatedFormData(JSON.parse(storedData));
-      }
-    }, []);
-    const handleSave = () => {
-      localStorage.setItem('formData', JSON.stringify(formData));
-      setEditing(false);
-      handleSubmit(updatedFormData)
-    };
+  const handleSave = () => {
+    debugger
+    localStorage.setItem('formData', JSON.stringify(updatedFormData));
+    setEditing(false);
+    handleSubmit(updatedFormData);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUpdatedFormData((prevData) => ({
-      ...prevData,
+    setUpdatedFormData({
+      ...updatedFormData,
       [name]: value,
-    }));
+    });
   };
 
   return (
@@ -44,7 +37,7 @@ const Step4 = ({ formData, handleSubmit }) => {
           <div className="mb-3">
             <label className="form-label">Email</label>
             <input
-              className="form-control" 
+              className="form-control"
               name="email"
               value={updatedFormData.email}
               onChange={handleInputChange}
@@ -115,7 +108,7 @@ const Step4 = ({ formData, handleSubmit }) => {
             className="btn btn-primary"
             onClick={() => {
               setEditing(false);
-              handleSubmit(updatedFormData); // Trimite datele actualizate
+              handleSave(); // Trimite datele actualizate
             }}
           >
             SAVE
@@ -128,7 +121,7 @@ const Step4 = ({ formData, handleSubmit }) => {
               <strong>Name:</strong> {formData.name}
             </li>
             <li className="list-group-item">
-              <strong>Email:</strong> {formData.email} 
+              <strong>Email:</strong> {formData.email}
             </li>
             <li className="list-group-item">
               <strong>Address:</strong> {formData.address}

@@ -18,12 +18,15 @@ const MultiStepForm = () => {
     textarea: '',
   });
 
-  if (localStorage.MultiStepFormData &&  localStorage.currentStep >= 4) {
-    setFormData(localStorage.MultiStepFormData) 
-  
-  }
-
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    debugger
+    const storageData = localStorage.getItem('formData');
+    if (storageData) {
+      setFormData(JSON.parse(storageData));
+    }
+  }, []);
 
   const handleNext = () => {
     const validationErrors = validateStep(step);
