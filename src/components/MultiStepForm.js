@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
+import Step4 from './Step4';
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -11,11 +12,16 @@ const MultiStepForm = () => {
     address: '',
     city: '',
     zip: '',
+    role: '',
+    gender: '',
+    notifications: false,
+    newsletter: false,
   });
 
   const [errors, setErrors] = useState({});
 
   const handleNext = () => {
+    debugger;
     const validationErrors = validateStep(step);
     if (Object.keys(validationErrors).length === 0) {
       setStep(step + 1);
@@ -27,8 +33,14 @@ const MultiStepForm = () => {
   const handleBack = () => setStep(step - 1);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+
+    if (type === 'checkbox') {
+      setFormData({ ...formData, [name]: checked });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+
     setErrors({ ...errors, [name]: '' }); // Clear errors for the current field
   };
 
@@ -52,6 +64,7 @@ const MultiStepForm = () => {
         newErrors.email = 'Email is not valid';
       }
     }
+
     if (currentStep === 2) {
       if (!formData.address.trim()) newErrors.address = 'Address is required';
       if (!formData.city.trim()) newErrors.city = 'City is required';
@@ -61,22 +74,50 @@ const MultiStepForm = () => {
         newErrors.zip = 'ZIP code must be a 5-digit number';
       }
     }
+
+    if (currentStep === 3) {
+      if (!formData.gender.trim())
+        newErrors.gender = 'You need to choose gender';
+      if (!formData.role.trim()) newErrors.role = 'Role is required';
+    }
+
     return newErrors;
   };
 
   return (
     <div className="card">
       <div className="card-body">
-        {step === 1 && <Step1 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 2 && <Step2 formData={formData} handleChange={handleChange} errors={errors} />}
-        {step === 3 && <Step3 formData={formData} handleSubmit={handleSubmit} />}
+        {step === 1 && (
+          <Step1
+            formData={formData}
+            handleChange={handleChange}
+            errors={errors}
+          />
+        )}
+        {step === 2 && (
+          <Step2
+            formData={formData}
+            handleChange={handleChange}
+            errors={errors}
+          />
+        )}
+        {step === 3 && (
+          <Step3
+            formData={formData}
+            handleChange={handleChange}
+            errors={errors}
+          />
+        )}
+        {step === 4 && (
+          <Step4 formData={formData} handleSubmit={handleSubmit} />
+        )}
         <div className="d-flex justify-content-between mt-3">
           {step > 1 && (
             <button className="btn btn-secondary" onClick={handleBack}>
               Back
             </button>
           )}
-          {step < 3 && (
+          {step < 4 && (
             <button className="btn btn-primary" onClick={handleNext}>
               Next
             </button>
