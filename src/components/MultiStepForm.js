@@ -12,6 +12,7 @@ const MultiStepForm = () => {
     address: '',
     city: '',
     zip: '',
+    county: '',
     role: '',
     gender: '',
     notifications: false,
@@ -73,6 +74,7 @@ const MultiStepForm = () => {
       } else if (formData.zip.length !== 5 || isNaN(formData.zip)) {
         newErrors.zip = 'ZIP code must be a 5-digit number';
       }
+      if (!formData.county.trim()) newErrors.county = 'County is required';
     }
 
     if (currentStep === 3) {
